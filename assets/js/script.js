@@ -3,12 +3,21 @@ var formEl = document.querySelector("#task-form")
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 // Task Handler to create task item
-var createTaskHandler = function (event) {
+var createFormHandler = function (event) {
 
     event.preventDefault();
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
     
+    // Check of input values are empty strings
+    if (!taskNameInput || !taskTypeInput) {
+        alert("You need to fill out the task form!");
+        return false;
+    }
+
+    // Reset form
+    formEl.reset();
+
     // Package up data as an object
     var taskDataObj = {
         name: taskNameInput,
@@ -40,6 +49,6 @@ var createTaskEl = function (taskDataObj) {
 
 }
 // Create Li element
-formEl.addEventListener("submit",createTaskHandler);
+formEl.addEventListener("submit",createFormHandler);
 
 
